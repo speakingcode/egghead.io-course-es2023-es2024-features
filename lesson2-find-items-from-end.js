@@ -12,43 +12,47 @@ const arr = [
 ];
 
 /* normal array access by index... 0 to (arr.length - 1) */
+test('Normal array access...', () => {
+  expect(arr [0]).toEqual({ position: '1', name: 'first' })
+  expect(arr[arr.length - 1]).toEqual({ position: '10', name: 'tenth' })
+});
 
-arr [0]
-// { position: '1', name: 'first' }
-
-arr[arr.length - 1]
-// { position: '10', name: 'tenth' }
-
-/* can't address from end
-// > arr[-1]
-// undefined
+/* can't address from end */
+test('Addressing array from end/negative index does not work', () => {
+  expect(arr[-1]).toBe(undefined)
+});
 
 /* Array.at() can address from beginning or end */
+test('Array.at() can address from beginning', () => {
+  expect(arr.at(0)).toEqual({ position: '1', name: 'first' })
+});
 
-arr.at(0)
-// { position: '1', name: 'first' }
-
-arr.at(-1)
-// { position: '10', name: 'tenth' }
-arr.at(-2)
-// { position: '9', name: 'random' }
+test('Array.at() can address from end/use negative indices', () => {
+  expect(arr.at(-1)).toEqual({ position: '10', name: 'tenth' })
+  expect(arr.at(-2)).toEqual({ position: '9', name: 'random' })
+});
 
 /* find first element from beginning/left/0th index which meets condition */
+test('Array.find() returns first element which matches condition', () => {
+  expect(arr.find(({name}) => name == "third"))
+  .toEqual({ position: '3', name: 'third' })
 
-arr.find(({name}) => name == "third")
-// { position: '3', name: 'third' }
-
-arr.find(({name}) => name == "random")
-// { position: '4', name: 'random' }
+  expect(arr.find(({name}) => name == "random"))
+  .toEqual({ position: '4', name: 'random' })
+});
 
 /* find last elmement (i.e. first match traversing from the end/right/last index */
+test('Array.findLast() returns last element which meets condition', () => {
+  expect(arr.findLast(({name}) => name == "random"))
+  .toEqual({ position: '9', name: 'random' })
+});
 
-arr.findLast(({name}) => name == "random")
-// { position: '9', name: 'random' }
+/* find the index of first element that matches */
+test('Array.findIndex() returns index of first element which meets condition', () => {
+  expect(arr.findIndex(({name}) => name == "random")).toBe(3)
+});
 
-/* find the index of element that first matches */
-
-arr.findIndex(({name}) => name == "random")
-// 3
-arr.findLastIndex(({name}) => name == "random")
-// 8
+/* find the index of last element that matches */
+test('Array.findLastIndex() returns index of last element which meets condition', () => {
+  expect(arr.findLastIndex(({name}) => name == "random")).toBe(8)
+});
