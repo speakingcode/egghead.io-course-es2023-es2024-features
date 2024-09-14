@@ -1,0 +1,18 @@
+{
+  "name": "egghead-tutorial-es2023-es2024-features",
+  "version": "1.0.0",
+  "description": "Examples from the egghead.io es2024/23 features tutorial, made into running test cases...",
+  "type": "module",
+  "main": "lesson1-Object.groupBy.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "jest":{
+    "testMatch": ["**/*.js"]
+  },
+  "author": "speakingcode",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
